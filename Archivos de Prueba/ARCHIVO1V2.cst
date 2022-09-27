@@ -1,0 +1,376 @@
+int var1 = 1;
+int punteo = 0;
+
+run InicioArchivo1();
+
+InicioArchivo1(): void {
+    Println("-----------------CALIFICACION ARCHIVO 1-----------------");
+    Println("Valor: 15 pts");
+    Println("--------------------------------------------------------");
+    int var1 = 0;
+    //Verificar ambitos, se toma con prioridad la variable local ante la global.
+    if (var1 != 0) {
+        Println("No se toma con prioridad la variable local ante la global");
+        Println("Perdiste 8 puntos :c");
+    }
+    else {
+        punteo = punteo + 8;
+        Println("Muy bien, prioridad de variable local correcta");
+        Println("Haz sumado 8 puntos");
+        Println("Punteo = " + punteo);
+    }
+
+    //Sección de declaracion de variables
+    Declaracion();
+    //seccion de manejo de Ámbitos 2
+    int amb1 = 3;
+    Ambitos2();
+
+    //Sección de expresiones aritméticas
+    Aritmeticas();
+
+    //Seccion de expresiones lógicas
+    Logicas();
+
+    //Seccion de expresiones relacionales
+    Relacionales();
+
+    //punteo final
+    Println("Punteo Final: " + punteo);
+    double resultado = (punteo*15)/100;
+    Println("-----------------------------------");
+    Println("|   RESULTADO ARCHIVO 1 = " + resultado +" pts  |");
+    Println("-----------------------------------");
+
+}
+
+Declaracion(): void{
+    /*  SALIDA ESPERADA:
+            ========= Metodo Declaracion =========
+            Voy a ganar Compiladores 1 :D
+            ======================================
+    */
+    Println("========= Metodo Declaracion =========");
+    int n1,n2,n3,n4 = 1;
+    StriNg str1 = "Voy a ganar Compiladores";
+    string str2 = "Voy a ganar Compiladores";
+    String str3 = "Voy a ganar Compiladores";
+    string str4 = "Voy a ganar Compiladores";
+    DoublE db1 = 0.0;
+    double db2 = 0.0;
+    Double db3 = 0.0;
+    double db4 = 0.0;
+    char chr1 = 's';
+    char chr2 = 's';
+    char chr3 = 's';
+    char chr4 = 's';
+    //si n modificar la asignaci?n
+    if (db1 == db4) {
+        Println(str1 + chr2 + " " + n3 + " :D");
+        punteo = punteo + 6;
+        Println("Declaración correcta");
+        Println("Haz sumado 6 puntos");
+    } else {
+        Println("Problemas en el metodo declaracion :(");
+        Println("Perdiste 6 pts :(");
+    }
+    Println("--------------------------------------");
+    Println("Punteo = " + punteo);
+    Println("======================================");
+}
+
+Ambitos2():void{
+    //Ambito local                                                                                                           //aca hay un error semantico amb1 //no existe   |F:64 C18|
+    string amb1 = "Desde ambito2";
+    Println("==============Ambitos 2===============");
+    if (amb1 == "Desde ambito2") {
+        Println(amb1);
+        punteo = punteo + 8;
+    }
+    else {
+        Println("Tienes un error al manejar la variable amb1 :(");
+        Println("Perdiste 8 puntos");
+    }
+    Println("Punteo = " + punteo);
+    Println("======================================");
+}
+
+Aritmeticas():void{
+    //suma de strings con caracteres
+    /* SALIDA ESPERADA
+    ==============Aritmeticas=============
+    Hola COMPI
+    El valor de  n1 = 52.1
+    El valor de n3 = 70.0
+    -Operaciones Basicas: valor esperado:   a)62   b)0   c)-19   d)256   resultados>
+    a) 62
+    b) 0
+    c) -19
+    d) 256
+    ======================================
+    */
+    Println("==============Aritmeticas=============");
+    string art1 = "Hola " + 'C' + "" + 'O' + "" + 'M' + "" + 'P' + "" + 'I';
+    Println(art1);
+    if (art1 == "Hola COMPI") {
+        punteo = punteo + 6;
+    } else {
+        Println("Perdiste 6 puntos en suma de cadena y caracter :c");
+    }
+
+    double n1 = 0.0 + true + true + 1 + 0.1 + '1';  //ascii del 1 es 49
+    Println("El valor de  n1 = " + n1);
+    if (n1 == 52.1) {
+        punteo = punteo + 6;
+    } else {
+        Println("Perdiste 6 puntos en suma de enteros booleanos y caracteres :c");
+    }
+
+    int n2 = '2' - 1 - '1';
+    if (n2 == 0) {
+        punteo = punteo + 5;
+    } else {
+        Println("Perdiste 5 puntos en la resta de caracteres :c");
+    }
+
+    double n4 = (5750 * 2) - 11800 + 1.0;
+    double n3 = (((3 * 3) + 4) - 80 + 40.00 * 2 + 358.50 - (29 / 14.50)) - (0.50) + n4;
+    Println("El valor de n3 = " + n3);
+    if (n3 == 70.0) {
+        punteo = punteo + 6;
+    }
+    else {
+        Println("Perdiste 6 puntos :c ");
+    }
+
+    operacionesBasicas();
+    operacionesAvanzadas();
+    Println("Punteo = " + punteo);
+    Println("======================================");
+
+}
+
+operacionesBasicas(){
+    Println("Operaciones Aritmeticas 1: valor esperado:   a)62   b)0   c)-19   d)256   resultados>");
+    int a;
+    a = (20 - 10 + 8 / 2 * 3 + 10 - 10 - 10 + 50);
+    int b;
+    b = (50 / 50 * 50 + 50 - 100 + 100 - 100);
+    int c;
+    c = (100 / 20 * 9 - 78 + 6 - 7 + 8 - 7 + 7 * 1 * 2 * 3 / 3);
+    int d;
+    d = (2 ^ (20 / 5 * 2));
+    Println("a) " + a);
+    Println("b) " + b);
+    Println("c) " + c);
+    Println("d) " + d);
+    if (a == 62 && b == 0 && c == -19 && d == 256) {
+        Println("Operaciones aritmeticas 1 bien :D");
+        punteo = punteo + 8;
+    } else {
+        Println("Error para las operaciones basicas :(");
+    }
+}
+
+operacionesAvanzadas():void{
+    int aritmetica1 = 2;
+    int aritmetica2 = -10;
+    Println("Operaciones Aritmeticas 2: valor esperado>-20  41 \nresultado>");
+    int aritmetica3 = aritmetica2 * aritmetica1;
+    Println(aritmetica3 + "");
+    aritmetica1 = aritmetica3 / aritmetica1 + 50 ^ 2 / 50 + 50 * 2 - 100 + 100 / 100 - 0;
+    Println(aritmetica1 + "");
+    if (aritmetica3 == -20 && aritmetica1 == 41) {
+        Println("Operaciones aritmeticas 2 bien :D");
+        punteo = punteo + 8;
+    } else {
+        Println("Error Operaciones Aritmeticas");
+    }
+}
+
+Logicas():void{
+    Println("==============Logicas1=============");
+    if (!!!!!!!!!!!!!!!!!!true) {
+        punteo = punteo + 1;
+        Println("Bien primera condicion:)");
+    } else {
+        Println("Perdiste 1 punto :c");
+    }
+
+    if (((true && true) || ((false && false) && (false == true))) || (!true)) {
+        punteo = punteo + 5;
+        Println("Bien segunda condicion:)");
+    } else {
+        Println("Perdiste 5 puntos :c");
+    }
+    Println("======================================");
+    Logicas2();
+    Println("--------------------------------------");
+    Println("Punteo = " + punteo);
+    Println("--------------------------------------");
+}
+
+Logicas2():void{
+    int n0 = 16;
+    Println("==============Logicas2=============");
+
+    if (!(!(n0 == 16 && false == true) && !(true))) {
+        Println("Not y Ands Correctos");
+        punteo = punteo + 5;
+
+    } else {
+        Println("No funcionan nots y ands :(");
+    }
+    int n1;
+    n1 = n0 / 16;
+    n1 = n1 + true;
+    boolean condicion1 = n1 != 2; //esto es falso
+    double aritmetica1 = n0 / 16 + ((!(true || false))); // aritmetica1 = 0
+    boolean condicion2 = aritmetica1 == n1; //falso
+    boolean condicion3 = !true; //falso
+
+    if (!(!(!(condicion1 || condicion2) || condicion3))) {
+        Println("Nots y Ors correctos");
+        punteo = punteo + 5;
+    } else {
+        Println("No Funciona nots y ands :(");
+    }
+    Println("======================================");
+
+    Logicas3(n0);
+}
+
+Logicas3(int n0):void{
+    //Hacer lo mismo que logicas2 pero con nands y nors
+    Println("==============Logicas3=============");
+
+    if (!(!(n0 == 16 && false == true) && !(true))) {
+        Println("NANDS Correctos");
+        punteo = punteo + 5;
+
+    } else {
+        Println("No funcionan NANDS :(");
+    }
+
+    int n1;
+    n1 = n0 / 16;
+    n1 = n1 + true;
+    boolean condicion1 = false; //esto es falso
+    int aritmetica1;
+    aritmetica1 = n0 / 16 + ((!(true || false))); // aritmetica1 = 0
+    boolean condicion2 = false; //falso
+    boolean condicion3 = true; //verdadero
+
+    if (!(!(!(condicion1 || condicion2) || condicion3))) {
+        Println("NORS correectos");
+        punteo = punteo + 3;
+    } else {
+        Println("No Funcionan NORS :(");
+    }
+
+    Println("======================================");
+}
+
+Relacionales():void{
+    int n0 = 34;
+    int n1 = 16;
+
+    relaciones1(n0);
+    relaciones2(n1);
+}
+
+relaciones1(int salida):void
+{
+
+    Println("==============relacionales1=============");
+    double n0 = salida + 0.0;
+    if (n0 < 34.44) {
+        salida = salida + 15;
+        if (salida > 44) {
+            salida++;
+
+        }
+    }
+    else {
+        salida = 1;
+    }
+
+    if (salida != 1) {
+        if (salida == 50) {
+            Println("Salida Correcta Relacionales 1!");
+            punteo = punteo + 10;
+        }
+        else {
+            Println("Salida incorrecta!!");
+        }
+    }
+    else {
+        Println("Salida incorrecta!!");
+    }
+    Println("======================================");
+}
+
+relaciones2(int n0):void{
+    Println("vas bien, animo :D");
+
+    Println("============Relacionales2=============");
+
+
+    if(10 - 15 >= 0 && 44.44 == 44.44)
+    {
+
+        Println("Salida incorrecta primer Si relacionales2!!");
+
+    }
+
+    else {
+
+        if(15 + 8 == 22 - 10 + 5 * 3 - 4 && 13 * 0 > -1)
+
+        {
+
+            if(10.0 != 11.0 - 1.01)
+
+            {
+
+                Println("Salida CORRECTA en relacionales2!!");
+                punteo = punteo + 5;
+            }
+
+            else {
+
+                Println("Salida incorrecta segundo Si relacionales 2!!");
+
+            }
+
+
+
+        }
+
+        else {
+
+            if(1 == 1)
+
+            {
+
+                Println("Salida incorrecta relacionales 2 3er si !!");
+
+            }
+
+            else {
+
+                Println("Salida incorrecta relacionales 2 Sino3er si !!");
+
+            }
+
+
+
+        }
+
+
+
+    }
+    Println("======================================");
+
+}
+

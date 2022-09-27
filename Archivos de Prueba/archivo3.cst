@@ -1,0 +1,267 @@
+/*
+    DECLARAMOS UN VECTOR DE 15 POSICIONES
+    SE IMPRIMRÁ Y POSTERIORMENTE SE ORDENARÁ
+*/
+int vectorNumeros [] = new int[15];
+vectorNumeros[0] = 1==1? 100:19; //tiene que ser 100
+vectorNumeros[1] = 26;
+vectorNumeros[2] = 1;
+vectorNumeros[3] = 15;
+vectorNumeros[4] = 167;
+vectorNumeros[5] = 0;
+vectorNumeros[6] = 76;
+vectorNumeros[7] = 94;
+vectorNumeros[8] = 25;
+vectorNumeros[9] = 44;
+vectorNumeros[100-90] = 5;
+vectorNumeros[11] = 59;
+vectorNumeros[12] = 95;
+vectorNumeros[13] = 10;
+vectorNumeros[14] = 23;
+
+
+Char frase [10][10] = [
+    ['.','.','.','.','.','.','.','.','.','O'],
+    ['.','.','.','.','.','.','.','.','D','.'],
+    ['.','.','.','.','.','.','.','N','.','.'],
+    ['.','.','.','.','.','.','U','.','.','.'],
+    ['.','.','.','.','.','M','.','.','.','.'],
+    ['.','.','.','.','.','.','.','.','.','.'],
+    ['.','.','.','A','.','.','.','.','.','.'],
+    ['.','.','L','.','.','.','.','.','.','.'],
+    ['.', 'O' ,'.','.','.','.','.','.','.','.'],
+    ['H','.','.','.','.','.','.','.','.','.']
+    
+];
+
+voltearFilas( char arreglo [][]) : void {
+    // Guardar de una vez la longitud para hacer más legible el código
+    int longitudDelArreglo = length(arreglo);
+    // Recorrer arreglo hasta la mitad. Si es impar, se va al entero anterior más 
+    // próximo. P. ej. 5 / 2 => 2
+    for (int x = 0; x < longitudDelArreglo / 2; x++) {
+      // Respaldar el valor actual
+      Char temporal = arreglo[x];
+      // Calcular el índice contrario, es decir, el del otro lado de la mitad; el cual irá descendiendo
+      int indiceContrario = longitudDelArreglo - x - 1;
+      // En el actual ahora está el del otro lado
+      arreglo[x] = arreglo[indiceContrario];
+      // Y en el otro lado, el que estaba originalmente en el actual
+      arreglo[indiceContrario] = temporal;
+    }
+    // No regresamos nada porque ya modificamos al arreglo internamente :p
+}
+
+
+imprimirMatriz(char matriz [][]) :void {
+    int i, j;
+    String linea = "";
+    for (i = 0; i < length(matriz); i++) {
+        for (j = 0; j < length(matriz[i]); j++) {
+            linea = linea + " " + matriz[i][j] +" ";
+        }
+        Println(linea);
+        linea = "";
+    }
+}
+
+
+
+Hanoi(int discos, int origen, int auxiliar, int destino) {
+    if (discos == 1) {
+        Println("Mover disco de " + origen + " a " + destino);
+    } else {
+        Hanoi(discos - 1, origen, destino, auxiliar);
+        Println("Mover disco de " + origen + " a " + destino);
+        Hanoi(discos - 1, auxiliar, origen, destino);
+    }
+}
+
+imprimirVector(int[] miVector){
+    for (int i = 0; i < length(miVector); i++) {
+        Println("vectorNumeros[" + i + "] = " + miVector[i]);
+    }
+}
+
+BubbleSort(int[] miVector){
+    for (int i = 0; i < length(miVector); i++)
+    {
+        for (int j = 0; j < length(miVector) - i - 1; j++)
+        {
+            if (miVector[j] > miVector[j + 1]) {
+                int temp;
+                temp = miVector[j];
+                miVector[j] = miVector[j + 1];
+                miVector[j + 1] = temp;
+            }
+        }
+    }
+}
+
+
+run Archivo3();
+
+ParoImpar(int a) {
+    if (par(a) == 1) { // El número es Par
+        Println("El numero '" + a + "'" + " es Par");
+    } else { // El número es impar
+        Println("El numero '" + a + "'" + " es Impar");
+    }
+}
+
+par(int nump): int {
+    if (nump == 0) {
+        return 1;
+    }
+    return impar(nump - 1);
+}
+
+impar(int numi) :int {
+    if (numi == 0) {
+        return 0;
+    }
+    return par(numi - 1);
+}
+
+ackermanPuntosMenos(int m, int n):int{
+    if (m == 0) {
+        return n + 1;
+    } else if (m > 0 && n == 0) {
+        return ackermanPuntosMenos(m - 1, 1);
+    } else {
+        return ackermanPuntosMenos(m - 1, ackermanPuntosMenos(m, n - 1));
+    }
+}
+
+ackerman(int m, int n):int{
+    return (m == 0 ? n + 1 : (m > 0 && n == 0 ? ackerman(m - 1, 1) : ackerman(m - 1, ackerman(m, n - 1))));
+}
+
+Archivo3(){
+    Println("====================ARCHIVO 3====================");
+    Println("**************SECCION DE VECTORES****************");
+    Println("---Vector Desordenado---");
+    imprimirVector(vectorNumeros);
+    BubbleSort(vectorNumeros);
+    Println("-----Vector Ordenado----");
+    imprimirVector(vectorNumeros);
+    Println("************FIN DE SECCION VECTORES***************");
+    Println("****************SECCION DE LISTAS****************");
+    //agregamos valores a la lista
+    Println("El mensaje es:");
+    Println("************FIN DE SECCION DE LISTAS**************");
+    Println("**************SECCION DE CASTEOS***************");
+    Casteos();
+    Println("************FIN DE SECCION DE CASTEOS*************");
+    Println("**************SECCION DE NATIVAS***************");
+    FuncionesEspecialesNativas();
+    Println("************FIN DE SECCION DE NATIVAS*************");
+    Println("***********SECCION DE RECURSIVIDAD***************");
+    Println("---------------FUNCION FIBONACCI-----------------");
+    imprimir_fibonacci(20);
+    Println("-------------------------------------------------");
+    Println("---------------FUNCION PAR-IMPAR-----------------");
+    ParoImpar(71);
+    Println("-------------------------------------------------");
+    Println("----------------TORRES DE HANOI------------------");
+    int discos = 3;
+    int origen = 1;
+    int auxiliar = 2;
+    int destino = 3;
+    Hanoi(discos, origen, auxiliar, destino);
+    Println("-------------------------------------------------");
+    Println("---------------FUNCION ACKERMANN-----------------");
+    int m = 3;
+    int n = 4;
+    Println("Funcion de Ackerman (" + m + ", " + n + ") = " + ackerman(m, n));
+    //Println("Funcion de Ackerman Puntos Menos (" + m + ", " + n + ") = " + ackermanPuntosMenos(m, n));
+    Println("-------------------------------------------------");
+    Println("*************FIN DE RECURSIVIDAD*****************");
+    Println("=================================================");
+
+    Println("-------------------------------------------------");
+    Println("---------------Vectores de dos dimensiones-----------------");
+    voltearFilas(frase);
+    imprimirMatriz(frase);
+    Println("-------------------------------------------------");
+    Println("*************FIN DE vectores de dos dimensiones*****************");
+    Println("=================================================");
+}
+
+Casteos(){
+    Println("int a "+typeof((double) 1789));
+    Println("double a "+ typeof((int) 258.2));
+    Println("char  a "+ typeof((double) 'F'));
+    Println("int a "+typeof((char) 98));
+    Println("double a "+typeof(toString(2589.97)));
+}
+
+FuncionesEspecialesNativas(){
+    Println("------------------LENGTH-------------------");
+    Println("vectorNumero es de "+length(vectorNumeros)+" elementos");
+    int a = 15;
+    Println("------------------TOLOWER-------------------");
+    Println("SIN TOLOWER");
+    Println(toLower("CON TOLOWER"));
+    Println("------------------TOUPPER-------------------");
+    Println("sin toupper");
+    Println(toUpper("con toupper"));
+    Println("------------------TRUNCATE------------------");
+    double b=17.8;
+    Println("sin truncate: "+b);
+    b=truncate(b);
+    Println("con truncate "+b);
+    Println("------------------ROUND-------------------");
+    double c=26.5;
+    Println("sin round: "+c);
+    c=round(c);
+    Println("con round "+c);
+    double cc=26.4;
+    Println("sin round: "+cc);
+    cc=round(cc);
+    Println("con round "+cc);
+    Println("-----------------TYPEOF--------------------");
+    string x="soy una cadena";
+    int y = 50;
+    double z = 78.5;
+    char xx = 'a';
+    boolean yy = true;
+    Println("tipo: "+typeof(x));
+    Println("tipo: "+typeof(y));
+    Println("tipo: "+typeof(z));
+    Println("tipo: "+typeof(xx));
+    Println("tipo: "+typeof(yy));
+    Println("------------------LENGTH-------------------");
+    string cadena="soy una cadena";
+    Println("tamaño: "+length(cadena));
+    Println("------------------TOSTRING-------------------");
+    int numero=105;
+    Println("tipo: "+typeof(numero));
+    Println("tipo: "+typeof(toString(numero)));
+    Println("----------------TOCHARARRAY------------------");
+    Println("########imprimiendo lista de caracteres#######");
+    char saludo [] = tocharArray("EmelyGarcia");
+    Println(saludo[0]);
+    Println(saludo[0+1]);
+    Println(saludo[1+1]);
+    Println(saludo[3]);
+    Println(saludo[4]);
+
+}
+
+imprimir_fibonacci(int valor) {
+    Println("Resultado de fibonacci(" + valor + ") = " + fibonacci(valor));
+}
+
+fibonacci(int n):int {
+    if (n > 1) {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    } else if (n == 1) {
+        return 1;
+    } else if (n == 0) {
+        return 0;
+    } else {
+        Println("error");
+        return 0;
+    }
+}
